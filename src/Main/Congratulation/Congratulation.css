@@ -1,0 +1,33 @@
+.congo-img {
+  scale: 0.7;
+}
+.congo-heading {
+  margin: 10px;
+}
+.congo-bottomline {
+  margin: auto auto 20px auto;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.congo-backicon {
+  scale: 1.3;
+  color: rgb(52, 52, 235);
+  margin-top: 3px;
+}
+.congo-bottomline:hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .congo-heading {
+    font-size: 1rem;
+  }
+  .congo-line {
+    font-size: 0.9rem;
+  }
+  .congo-bottomline {
+    font-size: 0.8rem;
+  }
+}

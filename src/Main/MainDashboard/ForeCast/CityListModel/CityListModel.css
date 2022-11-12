@@ -1,0 +1,63 @@
+.citylist-model {
+  background-color: white;
+  z-index: 10;
+  right: 2vw;
+  color: rgb(80, 79, 79);
+  top: 8vh;
+  border-radius: 20px;
+  position: absolute;
+  padding: 10px;
+  transition: all 1s;
+  width: 310px;
+}
+.microphone-input {
+  position: absolute;
+  right: 35px;
+  top: 33px;
+}
+.back-input-icon {
+  position: absolute;
+  left: 35px;
+  top: 33px;
+}
+.back-input-icon:hover {
+  cursor: pointer;
+  color: green;
+}
+.microphone-input:hover {
+  cursor: pointer;
+  color: green;
+}
+.search-input {
+  width: 95%;
+  height: 50px;
+  border: 2px solid rgba(128, 128, 128, 0.155);
+  padding: 15px 40px;
+  margin: 10px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.searchitem-table {
+  width: 95%;
+  margin: auto;
+}
+.searchitem-raw {
+  height: 35px;
+}
+.searchitem-raw:hover {
+  color: green;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+  background-color: rgba(225, 221, 221, 0.845);
+}
+.searchitem-raw:active {
+  background-color: rgba(128, 128, 128, 0.374);
+}
+@media screen and (max-width: 480px) {
+  .citylist-model {
+    font-size: 0.9rem;
+    width: 280px;
+    right: 10vw;
+  }
+}

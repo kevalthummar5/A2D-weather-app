@@ -1,0 +1,26 @@
+.weather-card {
+  display: flex;
+  border: 2px solid green;
+
+  margin: 10px;
+  padding: 10px 20px;
+  height: fit-content;
+  width: fit-content;
+  color: white;
+  border: 1.5px solid white;
+  justify-content: space-around;
+  border-radius: 25px;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.card-active {
+  background: rgba(255, 255, 255, 0.2);
+  background-image: linear-gradient(to bottom right, #5afcdeb5, #587fe0b1);
+  /* background-color: #7dd5fb; */
+}
+@media screen and (max-width: 480px) {
+  .weather-card {
+    font-size: 0.9rem;
+  }
+}

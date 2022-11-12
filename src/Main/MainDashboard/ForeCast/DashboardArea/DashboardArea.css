@@ -1,0 +1,36 @@
+.dashboard-area {
+  background-color: #4a91ff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 8vh;
+  overflow: auto;
+  left: 250px;
+}
+.dashboard-area::-webkit-scrollbar {
+  width: 10px;
+
+  border-radius: 15px;
+  background: white;
+}
+.dashboard-area::-webkit-scrollbar-track {
+  width: 10px;
+
+  border-radius: 15px;
+}
+.dashboard-area::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: rgb(101, 99, 99);
+}
+
+@media screen and (max-width: 480px) {
+  .dashboard-area {
+    background-color: #4a91ff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 8vh;
+    overflow: auto;
+    left: 0;
+  }
+}

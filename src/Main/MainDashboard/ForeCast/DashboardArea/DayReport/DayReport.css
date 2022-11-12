@@ -1,0 +1,36 @@
+.daily-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 450px;
+  width: 80vw;
+  height: 580px;
+  margin: 10vh auto 0 auto;
+
+  /* border: 2px solid black; */
+}
+.day-report-card {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  max-width: 300px;
+  width: 80vw;
+}
+
+.weatherdata-table {
+  margin: auto;
+  width: 95%;
+  height: 65%;
+  text-align: left;
+}
+.daily-report-head {
+  margin: 10px;
+  transform: scaleY(1.2);
+}
+.items-data-icon {
+  text-align: left;
+  width: 40px;
+  scale: 1.2;
+  margin: 10px;
+}

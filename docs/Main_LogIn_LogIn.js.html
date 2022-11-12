@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Main/LogIn/LogIn.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Main/LogIn/LogIn.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { useContext, useReducer, useState } from "react";
+import {
+  errorSetter,
+  emailChecker,
+  passwordChecker,
+} from "../../Helpers/HelpersFunctions";
+import LogInButton from "../UI/LogInButton/LogInButton";
+import LogInCard from "../UI/LogInCard/LogInCard";
+import "./LogIn.css";
+import userContext from "../../Store/user-context";
+import { postData } from "../../Helpers/userFunctions";
+
+/**
+ * This component render login screen and responsible for
+ * display validation (error msg). and also display fetch
+ * error. it also having form state to manage input
+ * and error message.utilize errorsetter function and
+ * checker functions at helpersfunctions.
+ * send data to server if form is valid
+ */
+const LogIn = () => {
+  let isFormValid = false;
+
+  /**
+   * This is used to show or hide password.
+   */
+  const [isPasswordShow, setisPasswordShow] = useState(false);
+  /**
+   * utilize usercontext send login succeed to main usercontext
+   * after succesful login.
+   */
+  const [signupLoginObj, setloginData] = useContext(userContext);
+
+  /**
+   * This is display fetched error message.
+   */
+  const [loginFetchError, setloginFetchError] = useState("");
+
+  /**
+   * This is reducer function for form state.
+   */
+  const loginFormreducer = (loginFormstate, action) => {
+    switch (action.type) {
+      case "emailError":
+        return errorSetter(
+          emailChecker(action.input, action.type),
+          loginFormstate
+        );
+      case "passwordError":
+        return errorSetter(
+          passwordChecker(action.input, action.type),
+          loginFormstate
+        );
+      case "submit":
+        let submitErrorObj = {};
+        submitErrorObj["emailError"] = !loginFormstate[1].isEmailValid
+          ? "enter your email"
+          : "";
+        submitErrorObj["passwordError"] = !loginFormstate[1].isPasswordValid
+          ? "enter your password"
+          : "";
+
+        return [submitErrorObj, loginFormstate[1], loginFormstate[2]];
+      default:
+        return;
+    }
+  };
+
+  /**
+   * This is reducer hook for form state.
+   */
+  const [loginFormstate, loginFormDispatch] = useReducer(loginFormreducer, [
+    {
+      emailError: "",
+      passwordError: "",
+    },
+    {
+      isEmailValid: false,
+      isPasswordValid: false,
+    },
+    {
+      email: "",
+      password: "",
+    },
+  ]);
+  isFormValid = Object.values(loginFormstate[1]).every((e) => e === true);
+
+  /**
+   * This is main submithandler.
+   * it checks for form validity from form state
+   * and if valid submit data to server by
+   * utilizing userfunctions .
+   */
+  const loginSubmitHandler = async (e) => {
+    e.preventDefault();
+    loginFormDispatch({ type: "submit" });
+    let loginStatus =
+      isFormValid &amp;&amp; (await postData("login", loginFormstate[2]));
+
+    if (await loginStatus.succeed) {
+      /**
+       * set cookie to browser
+       */
+      document.cookie = `token=${loginStatus.data.token}`;
+      document.cookie = `cityId=${loginStatus.data.liveWeather.cityId}`;
+
+      /**
+       * set login succeed to main context
+       */
+      await signupLoginObj.dispach({ type: "loginSucceed" });
+
+      setloginData({
+        token: loginStatus.data.token,
+        cityId: loginStatus.data.liveWeather.cityId,
+      });
+    } else {
+      /**
+       * set fetch error message.
+       */
+      setloginFetchError(await loginStatus.data.msg);
+    }
+  };
+
+  return (
+    &lt;LogInCard description={"Enter Your Email and Password"}>
+      &lt;span className="login-fetcherror">{loginFetchError}&lt;/span>
+
+      &lt;form onSubmit={loginSubmitHandler} className="login-form">
+        &lt;input
+          placeholder="Email"
+          className="login-input"
+          type="text"
+          onChange={(e) => {
+            loginFormDispatch({
+              type: "emailError",
+              input: e.target.value,
+            });
+          }}
+        />
+        &lt;span className="login-error">{loginFormstate[0].emailError}&lt;/span>
+        &lt;div className="login-password">
+          &lt;i
+            onClick={() => setisPasswordShow(!isPasswordShow)}
+            className="login-password-icon"
+          >
+            {isPasswordShow ? &lt;FaRegEyeSlash /> : &lt;FaRegEye />}
+          &lt;/i>
+          &lt;input
+            placeholder="Password"
+            className="login-input"
+            type={isPasswordShow ? "text" : "password"}
+            onChange={(e) => {
+              loginFormDispatch({
+                type: "passwordError",
+                input: e.target.value,
+              });
+            }}
+          />
+        &lt;/div>
+        &lt;span className="login-error">{loginFormstate[0].passwordError}&lt;/span>
+
+        &lt;LogInButton
+          invalid={!isFormValid &amp;&amp; "invalid"}
+          type={"submit"}
+          title={"Log In"}
+        >&lt;/LogInButton>
+      &lt;/form>
+      &lt;p className="login-bottemline">
+        Don't have an Account? &amp;nbsp;
+        &lt;span
+          className="login-bottemline-span"
+          onClick={() => {
+            signupLoginObj.dispach({ type: "signupShow" });
+          }}
+        >
+          Sign Up
+        &lt;/span>
+      &lt;/p>
+    &lt;/LogInCard>
+  );
+};
+export default LogIn;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BackDrop">BackDrop</a></li><li><a href="global.html#CityListModel">CityListModel</a></li><li><a href="global.html#Congratulation">Congratulation</a></li><li><a href="global.html#Forecast">Forecast</a></li><li><a href="global.html#FormHeader">FormHeader</a></li><li><a href="global.html#LogIn">LogIn</a></li><li><a href="global.html#LogInButton">LogInButton</a></li><li><a href="global.html#LogInCard">LogInCard</a></li><li><a href="global.html#LogoutModel">LogoutModel</a></li><li><a href="global.html#Main">Main</a></li><li><a href="global.html#SignUp">SignUp</a></li><li><a href="global.html#TempCard">TempCard</a></li><li><a href="global.html#UserContextProvider">UserContextProvider</a></li><li><a href="global.html#WeatherCard">WeatherCard</a></li><li><a href="global.html#cityListFn">cityListFn</a></li><li><a href="global.html#countryChecker">countryChecker</a></li><li><a href="global.html#displayFn">displayFn</a></li><li><a href="global.html#emailChecker">emailChecker</a></li><li><a href="global.html#errorSetter">errorSetter</a></li><li><a href="global.html#forecastReportFn">forecastReportFn</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#iconAry">iconAry</a></li><li><a href="global.html#imgAry">imgAry</a></li><li><a href="global.html#liveWeatherFn">liveWeatherFn</a></li><li><a href="global.html#nameChecker">nameChecker</a></li><li><a href="global.html#passwordChecker">passwordChecker</a></li><li><a href="global.html#phoneChecker">phoneChecker</a></li><li><a href="global.html#postData">postData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sun Nov 13 2022 03:45:55 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

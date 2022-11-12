@@ -1,0 +1,32 @@
+.login-card {
+  position: relative;
+  padding: 5px;
+  overflow: auto;
+  border: 2px solid rgb(211, 205, 205);
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  width: 90vw;
+  height: 92vh;
+  margin: 30px auto;
+  background-color: #ffffff;
+  border-radius: 40px;
+  transition: all 1s;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.login-card::-webkit-scrollbar {
+  width: 7px;
+
+  border-radius: 15px;
+  background: rgb(238, 221, 221);
+}
+.login-card::-webkit-scrollbar-track {
+  width: 7px;
+
+  border-radius: 15px;
+}
+.login-card::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: rgb(101, 99, 99);
+}

@@ -1,0 +1,8 @@
+.backdrop {
+  position: absolute;
+  width: 99.9vw;
+  height: 99.9vh;
+  z-index: 7;
+  background-color: rgba(20, 20, 20, 0.669);
+  box-sizing: border-box;
+}

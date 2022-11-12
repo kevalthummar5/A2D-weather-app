@@ -1,0 +1,31 @@
+.login-button {
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 12px auto 2px auto;
+  width: 80%;
+  height: 45px;
+  color: #ffffff;
+  background: linear-gradient(192.05deg, #47bfdf 0%, #4a91ff 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
+  transition: all 1s;
+}
+
+.login-button:hover {
+  cursor: pointer;
+
+  background: linear-gradient(192.05deg, #47bfdf 0%, #1159c5 100%);
+}
+.invalid {
+  background: linear-gradient(192.05deg, #a8a8a8 0%, #b5b6b7 100%);
+}
+.invalid:hover {
+  background: linear-gradient(192.05deg, #a8a8a8 0%, #b5b6b7 100%);
+}
+@media screen and (max-width: 480px) {
+  .login-button {
+    font-size: 0.8rem;
+    height: 35px;
+  }
+}

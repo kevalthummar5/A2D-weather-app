@@ -1,0 +1,79 @@
+.logout-model {
+  background-color: white;
+  z-index: 10;
+  right: 28vw;
+  color: rgb(80, 79, 79);
+  overflow: hidden;
+  top: 25vh;
+  border-radius: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  padding: 50px 50px;
+  transition: all 1s;
+}
+.logout-icon {
+  margin: 10px;
+  padding: 15px 30px 10px 30px;
+  border-radius: 50%;
+  color: #cc5b5b;
+  background-color: #ffd6d6;
+
+  font-size: 3.5rem;
+}
+.logout-model-head {
+  margin: 20px auto 10px auto;
+}
+.logout-button {
+  margin: 30px 10px 5px 10px;
+  width: 192px;
+  height: 60px;
+  border: transparent;
+  background-color: #ff6d6d;
+  color: white;
+  border-radius: 15px;
+}
+.logout-button:hover {
+  background-color: #e63737;
+  cursor: pointer;
+}
+.logout-button:active {
+  background-color: #e13f3f;
+}
+.logout-cancel {
+  margin: 30px 10px 5px 10px;
+  width: 192px;
+  height: 60px;
+  border: transparent;
+  background-color: #e4e4e4;
+  color: black;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.logout-cancel:hover {
+  background-color: #b0b0b0;
+  cursor: pointer;
+}
+.logout-cancel:active {
+  background-color: #e4e4e4;
+}
+@media screen and (max-width: 600px) {
+  .logout-model {
+    right: 4vw;
+    top: 15vh;
+    scale: 0.8;
+  }
+}
+@media screen and (max-width: 900px) and (min-width: 600px) {
+  .logout-model {
+    right: 12vw;
+    top: 25vh;
+    scale: 0.9;
+  }
+}
+@media screen and (max-width: 1200px) and (min-width: 1200px) {
+  .logout-model {
+    right: 20vw;
+    top: 25vh;
+    scale: 0.9;
+  }
+}
