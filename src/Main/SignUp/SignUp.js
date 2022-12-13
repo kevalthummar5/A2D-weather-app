@@ -1,4 +1,4 @@
-import { useContext, useReducer, useRef, useState } from "react";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import {
   errorSetter,
@@ -13,6 +13,7 @@ import LogInButton from "../UI/LogInButton/LogInButton";
 import LogInCard from "../UI/LogInCard/LogInCard";
 import "./SignUp.css";
 import { postData } from "../../Helpers/userFunctions";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 /**
  * This component render signup screen and responsible for
  * display validation (error msg). and also display fetch
@@ -27,7 +28,7 @@ const SignUp = () => {
    * after succesful login.
    */
   const [signupLoginObj, setloginData] = useContext(userContext);
-
+  const navigate = useNavigate();
   /**
    * This is display fetched error message.
    */
@@ -43,16 +44,7 @@ const SignUp = () => {
    * explicity login to succeed to main user
    * context and call for login data to display.
    */
-  if (document.cookie.split(";")[0].split("=")[1]) {
-    signupLoginObj.dispach({ type: "loginSucceed" });
-    const token = document.cookie.split(";")[0].split("=")[1];
-    const cityId = document.cookie.split(";")[1].split("=")[1];
 
-    setloginData({
-      token: token,
-      cityId: cityId,
-    });
-  }
   let isFormValid = false;
 
   /**
@@ -269,7 +261,7 @@ const SignUp = () => {
             signupLoginObj.dispach({ type: "loginShow" });
           }}
         >
-          Login
+          <Link to="/login">Log in</Link>
         </span>
       </p>
     </LogInCard>

@@ -1,20 +1,19 @@
-import WeatherCard from "../../../../UI/WeatherCard/WeatherCard";
+import DayCard from "../../../../UI/DayCard/DayCard";
 import "./DayReport.css";
 import { cloudy } from "../../../../../Store/Imgcontext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import userContext from "../../../../../Store/user-context";
 const DayReport = () => {
   const [signupLoginObj, setloginData, displayData, isLoading] =
     useContext(userContext);
-
   if (!isLoading) {
     return (
       <div className="daily-report">
         <img className="daily-report-img" src={displayData.imgURL} />
         <div>
-          <WeatherCard active={"card-active"}>
+          <DayCard active={"card-active"}>
             <div className="day-report-card">
-              <h4>Today,sep 12 </h4>
+              <p>Today,2:15 AM </p>
               <h1 className="daily-report-head">
                 {`${displayData.temperature}°C`}
               </h1>
@@ -28,14 +27,14 @@ const DayReport = () => {
                           <e.iconId.id />
                         </td>
                         <td>{e.title}</td>
-                        <td>{`${e.quantity}${e.iconId.symbol}`}</td>
+                        <td className="items-data-quantity">{`${e.quantity}${e.iconId.symbol}`}</td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
             </div>
-          </WeatherCard>
+          </DayCard>
         </div>
       </div>
     );

@@ -30,6 +30,7 @@ const LogoutModel = (props) => {
               /**
                * set cookie to empty
                */
+
               document.cookie = "token=";
               document.cookie = "cityId=";
               signupLoginObj.dispach({ type: "signupShow" });

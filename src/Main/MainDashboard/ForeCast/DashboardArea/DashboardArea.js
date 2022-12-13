@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import "./DashboardArea.css";
 import DayReport from "./DayReport/DayReport";
 import ForeCastReport from "./ForeCastReport/ForeCastReport";
@@ -5,7 +6,8 @@ import ForeCastReport from "./ForeCastReport/ForeCastReport";
 const DashboardArea = (props) => {
   return (
     <div className="dashboard-area">
-      {props.isDailyReport ? <DayReport /> : <ForeCastReport />}
+      <Outlet />
+      {/* {props.isDailyReport ? <DayReport /> : <ForeCastReport />} */}
     </div>
   );
 };

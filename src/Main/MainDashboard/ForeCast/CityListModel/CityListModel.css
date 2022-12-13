@@ -4,12 +4,22 @@
   right: 2vw;
   color: rgb(80, 79, 79);
   top: 8vh;
-  border-radius: 20px;
+  border-radius: 15px;
   position: absolute;
   padding: 10px;
   transition: all 1s;
-  width: 310px;
+  width: 354px;
 }
+.citylist-cityname {
+  text-align: left;
+  margin-left: 10px;
+  /* font-family: "Overpass"; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 150%;
+}
+
 .microphone-input {
   position: absolute;
   right: 35px;
@@ -44,6 +54,10 @@
 }
 .searchitem-raw {
   height: 35px;
+  padding: 3px;
+}
+.searchitem-raw td {
+  padding: 3px;
 }
 .searchitem-raw:hover {
   color: green;

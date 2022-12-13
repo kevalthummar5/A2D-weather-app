@@ -3,6 +3,25 @@
 }
 .congo-heading {
   margin: 10px;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 40px;
+  /* width: 240px; */
+  /* height: 40px; */
+
+  /* font-family: "Plus Jakarta Sans"; */
+  color: #101010;
+  letter-spacing: -0.03em;
+}
+.congo-line {
+  width: 262px;
+  height: 64px;
+  color: #474f5a;
+  /* font-family: "Plus Jakarta Sans"; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
 }
 .congo-bottomline {
   margin: auto auto 20px auto;
@@ -13,8 +32,8 @@
   justify-content: center;
 }
 .congo-backicon {
-  scale: 1.3;
-  color: rgb(52, 52, 235);
+  scale: 1.2;
+  color: black;
   margin-top: 3px;
 }
 .congo-bottomline:hover {

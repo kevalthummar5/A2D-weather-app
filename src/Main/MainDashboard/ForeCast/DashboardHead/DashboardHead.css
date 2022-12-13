@@ -6,7 +6,10 @@
   z-index: 1;
   padding: 0 30px 0 10px;
   right: 0;
-  color: blue;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: black;
   background: #ffffff;
   display: flex;
   justify-content: end;
@@ -68,7 +71,7 @@
   background-color: gray;
   z-index: 9;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 550px) {
   .dashboard-head {
     position: fixed;
     left: 0;

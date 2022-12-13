@@ -10,6 +10,7 @@ import LogInCard from "../UI/LogInCard/LogInCard";
 import "./LogIn.css";
 import userContext from "../../Store/user-context";
 import { postData } from "../../Helpers/userFunctions";
+import { Link } from "react-router-dom";
 
 /**
  * This component render login screen and responsible for
@@ -159,7 +160,10 @@ const LogIn = () => {
           />
         </div>
         <span className="login-error">{loginFormstate[0].passwordError}</span>
-
+        <div className="login-remember">
+          <input className="login-rem-check" type="checkbox" />
+          <label>Remember Me</label>
+        </div>
         <LogInButton
           invalid={!isFormValid && "invalid"}
           type={"submit"}
@@ -174,7 +178,7 @@ const LogIn = () => {
             signupLoginObj.dispach({ type: "signupShow" });
           }}
         >
-          Sign Up
+          <Link to="/">Sign up</Link>
         </span>
       </p>
     </LogInCard>

@@ -20,17 +20,20 @@
 }
 .day-report {
   display: flex;
+  padding: 25px 25px 25px 0;
   align-items: flex-start;
   flex-direction: row;
-  max-width: 65vw;
+  width: 100%;
   margin: auto;
   flex-wrap: wrap;
 }
 .next-report {
-  max-width: 65vw;
+  width: 100%;
   display: flex;
+  padding: 25px 25px 25px 0;
   align-items: flex-start;
   margin: 0 auto;
+
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -40,7 +43,7 @@
 }
 .tempcard-img {
   scale: 0.7;
-  margin-right: -100px;
+  margin-right: -180px;
 }
 .calander-icon {
   scale: 1.2;

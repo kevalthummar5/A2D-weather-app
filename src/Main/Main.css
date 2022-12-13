@@ -1,7 +1,10 @@
 .main {
   position: relative;
-  height: 99.9vh;
-  background-color: #b1d7b4;
+  height: 100vh;
+  /* min-height: fit-content; */
+  width: 100vw;
+  background-color: #e7e7e7;
   padding-top: 1px;
   margin-top: -1px;
+  /* overflow: hidden; */
 }

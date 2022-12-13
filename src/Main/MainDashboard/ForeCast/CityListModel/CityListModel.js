@@ -3,6 +3,7 @@ import "./CityListModel.css";
 import { FaArrowLeft, FaMicrophone, FaMapMarkerAlt } from "react-icons/fa";
 import { useContext, useState } from "react";
 import userContext from "../../../../Store/user-context";
+import { displayFn } from "../../../../Helpers/weatherFunctions";
 
 /**
  * This component render city list utilize usercontext .
@@ -10,7 +11,14 @@ import userContext from "../../../../Store/user-context";
  * by seleced city.
  */
 const CityListModel = (props) => {
-  const [signupLoginObj, setloginData, displayData] = useContext(userContext);
+  const [
+    signupLoginObj,
+    setloginData,
+    displayData,
+    isLoading,
+    updatedCityLive,
+    setisLoading,
+  ] = useContext(userContext);
 
   /**
    * This filter citylist by inputbox value.
@@ -26,7 +34,17 @@ const CityListModel = (props) => {
   const selectHandler = (e) => {
     props.cityModelShow(false);
 
-    // future call for live weather data
+    new Promise((resolve, reject) => {
+      resolve(
+        displayFn({
+          token: displayData.token,
+          cityId: e._id,
+        })
+      );
+    }).then((result) => {
+      updatedCityLive(result);
+      setisLoading(false);
+    });
   };
   return (
     <div>
@@ -61,8 +79,8 @@ const CityListModel = (props) => {
                   <td>
                     <FaMapMarkerAlt />
                   </td>
-                  <td>{data.name}</td>
-                  <td>{`${data.maxTemperature}°C/${data.minTemperature}°C`}</td>
+                  <td className="citylist-cityname">{data.name}</td>
+                  <td>{`${35}°C/${25}°C`}</td>
                 </tr>
               );
             })}

@@ -2,6 +2,7 @@ import LogInButton from "../../../UI/LogInButton/LogInButton";
 import { mainicon, mobile } from "../../../../Store/Imgcontext";
 import "./LeftNav.css";
 import { AiOutlineAppstore, AiOutlineRead } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 const LeftNav = (props) => {
   return (
@@ -19,26 +20,30 @@ const LeftNav = (props) => {
         <img className="leftnav-iconimg" src={mainicon} />
         <h4>Forcasting</h4>
       </div>
-      <p>Main</p>
+      <p className="leftnav-main">Main</p>
       <div className="nav-menu">
-        <div
-          onClick={() => props.reportShowHandler(true)}
-          className={`nav-menuitem ${props.active && "nav-active"}`}
+        <NavLink
+          to="/dashboard/daily-report"
+          className={({ isActive }) =>
+            `nav-menuitem ${isActive && "nav-active"}`
+          }
         >
           <i className="nav-menuicon">
             <AiOutlineAppstore />
           </i>
           <span>Dashboard</span>
-        </div>
-        <div
-          onClick={() => props.reportShowHandler(false)}
-          className={`nav-menuitem ${!props.active && "nav-active"}`}
+        </NavLink>
+        <NavLink
+          to="/dashboard/forecast-report"
+          className={({ isActive }) =>
+            `nav-menuitem ${isActive && "nav-active"}`
+          }
         >
           <i className="nav-menuicon">
             <AiOutlineRead />
           </i>
           <span>ForeCast report</span>
-        </div>
+        </NavLink>
       </div>
       <div className="leftnav-upgrade">
         <img className="leftnav-mobileimg" src={mobile} />

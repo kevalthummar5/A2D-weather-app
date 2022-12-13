@@ -4,6 +4,7 @@ import { smily } from "../../Store/Imgcontext";
 import { FaAngleLeft } from "react-icons/fa";
 import { useContext } from "react";
 import userContext from "../../Store/user-context";
+import { Link } from "react-router-dom";
 
 /**
  * This component render after succesfull signed up.
@@ -29,7 +30,9 @@ const Congratulation = () => {
         <i className="congo-backicon">
           <FaAngleLeft />
         </i>
-        <span>&nbsp;Back to Signup</span>
+        <span>
+          &nbsp; <Link to="/">Back to Sign up</Link>
+        </span>
       </div>
     </LogInCard>
   );

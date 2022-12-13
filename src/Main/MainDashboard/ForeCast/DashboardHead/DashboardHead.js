@@ -6,8 +6,13 @@ import {
   FaPowerOff,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import userContext from "../../../../Store/user-context";
+import { useContext } from "react";
 
 const DashboardHead = (props) => {
+  const [signupLoginObj, setloginData, displayData, isLoading] =
+    useContext(userContext);
+
   return (
     <header className={`dashboard-head ${props.cityActive && "head-active"}`}>
       <i
@@ -23,7 +28,7 @@ const DashboardHead = (props) => {
         <i>
           <FaMapMarkerAlt />
         </i>
-        <span className="head-cityname">Semarang</span>
+        <span className="head-cityname">{displayData.cityName}</span>
         <i>
           <FaChevronDown />
         </i>

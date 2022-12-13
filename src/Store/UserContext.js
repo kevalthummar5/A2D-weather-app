@@ -69,7 +69,7 @@ const UserContextProvider = (props) => {
   const [signupLoginstate, signupLoginDispatch] = useReducer(
     signupLoginreducer,
     {
-      isSignupShow: true,
+      isSignupShow: false,
       isSignupSucceed: false,
       isLoginShow: false,
       isLoginSucceed: false,
@@ -102,9 +102,21 @@ const UserContextProvider = (props) => {
     return;
   }, [signupLoginstate]);
 
+  const updatedCityLive = (e) => {
+    setdisplayData(e);
+  };
+
   return (
     <userContext.Provider
-      value={[signupLoginObj, setloginData, displayData, isLoading]}
+      value={[
+        signupLoginObj,
+        setloginData,
+        displayData,
+        isLoading,
+        updatedCityLive,
+        setisLoading,
+        loginData,
+      ]}
     >
       {props.children}
     </userContext.Provider>

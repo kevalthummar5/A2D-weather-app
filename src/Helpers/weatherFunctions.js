@@ -34,6 +34,16 @@ export const cityListFn = (token) => {
 };
 
 /**
+ * This function is for get small city list.
+ * @param   {string} param1 token got after succesful login
+ * @return  {object} response of called get request
+ *  with appropiate param in this function.
+ */
+export const smallCityListFn = (id, token) => {
+  return getData(`view-small-forecast/${id}`, token);
+};
+
+/**
  * This is main function responsible for screen
  * after login , output object with appropiate
  *  arrays,objects,image url,icons refrence.
@@ -62,8 +72,9 @@ export const displayFn = async (loginData) => {
   let conditionImg = imgAry.filter(
     (e) =>
       Object.keys(e)[0] ===
-      liveWeatherData.data.data.condition.split("-").join("")
+      liveWeatherData.data.data.condition.split(" ").join("")
   );
+
   displayObj.imgURL = Object.values(conditionImg[0])[0];
 
   displayObj.condition = liveWeatherData.data.data.condition;
@@ -101,28 +112,55 @@ export const displayFn = async (loginData) => {
 
   /**
    * citylist : output of citylist function.
+   *            used for randering citylist of citylist model
    */
   const cityList = await cityListFn(loginData.token);
 
+  displayObj.cityList = cityList.data.list;
+  let cityName = cityList.data.list.filter((e) => e._id === loginData.cityId);
+  displayObj.cityName = cityName[0].name;
+
   /**
-   * filteredcitylist : filter citylist for max and min
-   * temperature.
-   * this is responsible for output data of CityListModel
-   * component.
+   * time wise forecast : output of smallCityListFn function.
+   *     output of this will get 24 hours forecast report
    */
-  const filteredCity = cityList.data.list.filter((obj) => {
-    return (
-      Object.keys(obj).includes("minTemperature") &&
-      Object.keys(obj).includes("maxTemperature")
-    );
+  const smallforecast = await smallCityListFn(
+    cityList.data.list[0]._id,
+    loginData.token
+  );
+
+  /**
+   * loop for set appropiate imageUrl refrence to appropiate
+   * condition.
+   * it takes array of imageUrl refrence from store and weather
+   * quantity from weather data and output imageUrl refrence
+   * with appropiate weather condition.
+   */
+  let timeWiseItems = smallforecast.data.DATA.map((e) => {
+    let timeWiseDataObj = {};
+    imgAry.map((data) => {
+      for (let [keys, values] of Object.entries(data)) {
+        if (keys === e.condition.split(" ").join("")) {
+          timeWiseDataObj.id = e._id;
+          timeWiseDataObj.time = e.time;
+          timeWiseDataObj.imgURL = values;
+          timeWiseDataObj.temperature = e.temperature;
+        }
+      }
+    });
+    return timeWiseDataObj;
   });
-  displayObj.cityList = filteredCity;
+  displayObj.timeWiseItems = timeWiseItems;
 
   /**
    * forecast : output of forecastreport function.
    */
-  const forecast = await forecastReportFn(filteredCity[1]._id, loginData.token);
+  const forecast = await forecastReportFn(
+    cityList.data.list[0]._id,
+    loginData.token
+  );
 
+  delete forecast.data.DATA.cityId;
   /**
    * forecast items responsible for rendering data in
    * ForecastReport component.
@@ -138,21 +176,21 @@ export const displayFn = async (loginData) => {
    */
   for (let [datakey, datavalue] of Object.entries(forecast.data.DATA)) {
     let forecastDataObj = {};
-    if (datakey !== "cityId") {
-      forecastDataObj.day = datakey;
-      forecastDataObj.quantity = datavalue.temperature;
 
-      let filteredObj = imgAry.filter((e) => {
-        return (
-          Object.entries(e)[0][0] === datavalue.condition.split("-").join("")
-        );
-      });
-
-      forecastDataObj.imgURL = Object.entries(filteredObj[0])[0][1];
-      forecastItems.push(forecastDataObj);
-    }
+    imgAry.map((data) => {
+      for (let [keys, values] of Object.entries(data)) {
+        if (keys === datavalue.condition.split(" ").join("")) {
+          forecastDataObj.id = datakey;
+          forecastDataObj.day = datakey;
+          forecastDataObj.imgURL = values;
+          forecastDataObj.temperature = datavalue.temperature;
+        }
+      }
+    });
+    forecastItems.push(forecastDataObj);
   }
-  displayObj.forecastItems = forecastItems;
 
+  displayObj.forecastItems = forecastItems;
+  // console.log(displayObj);
   return displayObj;
 };

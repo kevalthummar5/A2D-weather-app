@@ -3,12 +3,13 @@ import "./ForeCastReport.css";
 // import { calander } from "react-icons/fa";
 import { cloudy, Calander } from "../../../../../Store/Imgcontext";
 import WeatherCard from "../../../../UI/WeatherCard/WeatherCard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import userContext from "../../../../../Store/user-context";
 
 const ForeCastReport = () => {
   const [signupLoginObj, setloginData, displayData, isLoading] =
     useContext(userContext);
+
   if (!isLoading) {
     return (
       <div className="forecast-report">
@@ -17,15 +18,12 @@ const ForeCastReport = () => {
           <span>sep,12</span>
         </div>
         <div className="day-report">
-          {displayData.forecastItems.map((e) => {
+          {displayData.timeWiseItems.map((e) => {
             return (
-              <WeatherCard
-                key={e.day}
-                active={e == "day2" ? "card-active" : ""}
-              >
-                <h4>{e.day}</h4>
+              <WeatherCard key={e.id}>
+                <p>{`${e.temperature}°C`}</p>
                 <img className="report-img" src={e.imgURL} />
-                <h4>{`${e.quantity}°C`}</h4>
+                <p>{e.time}</p>
               </WeatherCard>
             );
           })}
@@ -39,10 +37,10 @@ const ForeCastReport = () => {
         <div className="next-report">
           {displayData.forecastItems.map((e) => {
             return (
-              <TempCard key={e.quantity}>
-                <h4>{e.day}</h4>
+              <TempCard key={e.id}>
+                <p>{e.day}</p>
                 <img className="tempcard-img" src={e.imgURL} />
-                <h4>{`${e.quantity}°C`}</h4>
+                <p>{`${e.temperature}°C`}</p>
               </TempCard>
             );
           })}

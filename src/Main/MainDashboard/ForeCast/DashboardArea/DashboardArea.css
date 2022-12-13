@@ -4,18 +4,20 @@
   bottom: 0;
   right: 0;
   top: 8vh;
+  height: 91.8vh;
+  /* border: 2px solid gold; */
+  /* width: 98vw; */
+  width: 85%;
   overflow: auto;
   left: 250px;
 }
 .dashboard-area::-webkit-scrollbar {
   width: 10px;
-
   border-radius: 15px;
   background: white;
 }
 .dashboard-area::-webkit-scrollbar-track {
   width: 10px;
-
   border-radius: 15px;
 }
 .dashboard-area::-webkit-scrollbar-thumb {

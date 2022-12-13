@@ -8,13 +8,14 @@
 import React from "react";
 import cloudy from "../Images/cloud.png";
 import mainicon from "../Images/a2dicon.png";
+// import mainicon from "../Images/kt.png";
 import mobile from "../Images/mobile.png";
 import moon from "../Images/moon.png";
 import partcloudy from "../Images/partcloudy.png";
 import rainy from "../Images/rainy.png";
 import smily from "../Images/smily.png";
 import snow from "../Images/snow.png";
-import stromy from "../Images/stromy.png";
+import stormy from "../Images/stromy.png";
 import sunny from "../Images/sunny.png";
 import thunder from "../Images/thunder.png";
 import {
@@ -47,14 +48,14 @@ export const iconAry = {
  * array of image Url (imported from react icons).
  */
 export const imgAry = [
-  { cloudy: cloudy },
-  { moon: moon },
-  { partlycloudy: partcloudy },
-  { rainy: rainy },
-  { snow: snow },
-  { stromy: stromy },
-  { sunny: sunny },
-  { thunder: thunder },
+  { Cloudy: cloudy },
+  { Moon: moon },
+  { PartlyCloudy: partcloudy },
+  { Rainy: rainy },
+  { Snow: snow },
+  { Stormy: stormy },
+  { Sunny: sunny },
+  { Thunder: thunder },
 ];
 
 export { mainicon };

@@ -1,18 +1,24 @@
 .weather-card {
   display: flex;
-  border: 2px solid green;
-
+  border: 1px solid #54cbff;
+  border-radius: 28.7437px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   margin: 10px;
   padding: 10px 20px;
-  height: fit-content;
-  width: fit-content;
+  height: 223px;
+  width: 148px;
   color: white;
-  border: 1.5px solid white;
   justify-content: space-around;
-  border-radius: 25px;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+}
+.weather-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  border-radius: 28.7437px;
 }
 .card-active {
   background: rgba(255, 255, 255, 0.2);

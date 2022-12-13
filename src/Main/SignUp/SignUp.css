@@ -1,6 +1,7 @@
 .signup-form {
   position: relative;
   display: flex;
+  width: 82%;
   /* border: 2px solid blue; */
   flex-direction: column;
   align-items: center;
@@ -12,11 +13,18 @@
   margin: 0 auto;
   max-width: 430px;
   width: 80vw;
-  height: 40px;
+  height: 54px;
   background: #ffffff;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 15px;
   transition: all 1s;
+
+  /* font-family: "Inter"; */
+  font-style: normal;
+  font-weight: 600;
+
+  font-size: 14px;
+  line-height: 17px;
 }
 .signup-error {
   font-size: 0.85rem;
@@ -49,18 +57,23 @@
 }
 .signup-bottomform-line {
   width: 80%;
-  font-weight: 500;
+  font-weight: 400;
   margin: 3px auto;
-  font-size: 0.9rem;
-  color: rgba(7, 14, 50, 0.799);
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(0, 13, 75, 0.69);
 }
 .signup-bottomform-line a {
   font-weight: bold;
 }
 .signup-bottemline {
-  font-weight: 500;
-  margin: 10px auto;
-  margin-top: auto;
+  width: 80%;
+  height: 19px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 3px auto;
 }
 .signup-bottemline-span {
   text-decoration: underline;
